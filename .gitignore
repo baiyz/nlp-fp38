@@ -1,6 +1,8 @@
+.fp-venv/
 .idea/
 **/data/
 **/trained_model/
 **/trained_model_qa/
 **/*.tar.gz
 **/*.bz2
+snli_1.0/
