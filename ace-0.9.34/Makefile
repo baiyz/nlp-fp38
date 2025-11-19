@@ -2,15 +2,19 @@ PREFIX=/usr/local
 
 # comment out these two lines if you don't want to include [incr tsdb()] support
 DELPHIN_CFLAGS=-isystem ${LOGONROOT}/lingo/lkb/include -DTSDB
-DELPHIN_LIBS=-L ${LOGONROOT}/lingo/lkb/lib/linux.x86.64 -Wl,-Bstatic -litsdb -lpvm3 -Wl,-Bdynamic
+#DELPHIN_LIBS=-L ${LOGONROOT}/lingo/lkb/lib/linux.x86.64 -Wl,-Bstatic -litsdb -lpvm3 -Wl,-Bdynamic
+DELPHIN_LIBS=-L ${LOGONROOT}/lingo/lkb/lib/linux.x86.64 -Wl,-Bdynamic -litsdb -lpvm3
 
 POST_CFLAGS=-I post/ -DPOST
-POST_LIBS=-Wl,-Bstatic -lutil -Wl,-Bdynamic	# for openpty for calling out to tnt (which uses fully buffered stdio)
+#POST_LIBS=-Wl,-Bstatic -lutil -Wl,-Bdynamic	# for openpty for calling out to tnt (which uses fully buffered stdio)
+POST_LIBS=-Wl,-Bdynamic -lutil
 
-REPP_LIBS=-Wl,-Bstatic -lrepp -Wl,-Bdynamic
+#REPP_LIBS=-Wl,-Bstatic -lrepp -Wl,-Bdynamic
+REPP_LIBS=-Wl,-Bdynamic -lrepp
 #REPP_CFLAGS=-I ${REPP_DIR}/include/
 
-BOOST_REGEX_LIBS=-Wl,-Bstatic -lboost_regex -lstdc++ -Wl,-Bdynamic
+#BOOST_REGEX_LIBS=-Wl,-Bstatic -lboost_regex -lstdc++ -Wl,-Bdynamic
+BOOST_REGEX_LIBS=-Wl,-Bdynamic -lboost_regex -lstdc++
 
 #CPU=-m32
 CC=gcc
@@ -19,7 +23,7 @@ CC=gcc
 #CFLAGS=-g -O6 -fomit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops ${CPU} -fprofile-use=./profile-data/
 
 #CFLAGS=-g -O6 -fomit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops ${CPU}
-CFLAGS=-g -O6 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops ${CPU}
+CFLAGS=-g -O6 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops -fcommon ${CPU}
 #CFLAGS=-g -O6 -funsigned-char -falign-loops=32 -funroll-loops ${CPU}  -pg
 #CFLAGS=-g -O2 -funsigned-char
 #CFLAGS=-g -O2 -pg -funsigned-char
